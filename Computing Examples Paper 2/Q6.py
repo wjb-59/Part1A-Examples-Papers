@@ -24,7 +24,7 @@ t = np.linspace(0, len(x)/fs, len(x), endpoint=False)
 plt.plot(t, x)
 plt.xlabel('time (s)')
 plt.ylabel('signal')
-#plt.show()
+plt.show()
 
 # Perform a Fourier transform of the signal (signal is real, so we can use the 'real' version)
 xf = np.fft.rfft(x)
@@ -37,7 +37,7 @@ freq = np.linspace(0.0, fs/2, len(xf))
 plt.plot(freq, np.abs(xf))
 plt.xlabel('frequency (Hz)')
 plt.ylabel('$\hat{x}$')
-#plt.show()
+plt.show()
 
 # Copy transformed problem
 xf_filtered = xf.copy()
@@ -51,17 +51,17 @@ plt.plot(freq, np.abs(xf_filtered))
 plt.xlabel('frequency (Hz)')
 plt.ylabel('$\hat{x}$')
 plt.xlim(0, 2*cutoff_freq)
-#plt.show()
+plt.show()
 
 # Perform inverse transfiorm
 x_filtered = np.fft.irfft(xf_filtered)
 
 # Plot signal over first 0.05 s
-n = int(0.05*fs)
+n = int(10*fs)
 plt.plot(t[:n], x_filtered[:n])
 plt.xlabel('time (s)')
 plt.ylabel('$x(t)$')
-#plt.show()
+plt.show()
 
 sd.play(x_filtered, fs)
 sd.wait()
